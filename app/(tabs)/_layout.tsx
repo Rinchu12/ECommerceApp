@@ -1,33 +1,36 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Tabs } from "expo-router";
+import React from "react";
+import { HapticTab } from "@/components/haptic-tab";
+import { IconSymbol } from "@/components/ui/icon-symbol";
+import { useLanguage } from "../src/context/LanguageContext";
+import { LocalizedStrings } from "../screens/localization/LocalizedStrings";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: "black",
         headerShown: false,
         tabBarButton: HapticTab,
-      }}>
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: LocalizedStrings.HOME,
+          tabBarIcon: ({ color }) => (
+            <IconSymbol name="house.fill" size={28} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="cart"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: LocalizedStrings.CART,
+          tabBarIcon: ({ color }) => (
+            <IconSymbol name="house.fill" size={28} color={color} />
+          ),
         }}
       />
     </Tabs>
