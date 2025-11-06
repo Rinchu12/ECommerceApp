@@ -7,28 +7,25 @@ import { useCart } from "../src/context/CartContext";
 import { useLanguage } from "../src/context/LanguageContext";
 import { LocalizedStrings } from "../screens/localization/LocalizedStrings";
 
-
 export default function HomeScreen() {
   const { cart, addToCart } = useCart(); // Cart context
   const { language, changeLanguage } = useLanguage(); // Language context
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
 
-
   // Recompute localized products whenever language changes
   const BASE_PRODUCTS = useMemo(() => {
     return Array.from({ length: 20 }).map((_, i) => ({
       id: i.toString(),
-      name: `${LocalizedStrings.HOME} ${LocalizedStrings.PRODUCT} ${i + 1}`,
+      name: `${LocalizedStrings.PRODUCT} ${i + 1}`,
       price: (10 + i).toFixed(2),
     }));
   }, [language]); // dependency on language
 
 
   // Update products when language changes
-useEffect(() => {
-  setProducts(BASE_PRODUCTS);
-}, [BASE_PRODUCTS]);
-
+  useEffect(() => {
+    setProducts(BASE_PRODUCTS);
+  }, [BASE_PRODUCTS]);
 
   // Products state and loading state
   const [products, setProducts] = useState(BASE_PRODUCTS);
@@ -96,9 +93,9 @@ useEffect(() => {
         onClose={() => setLanguageModalVisible(false)}
         onLanguageChange={(lang) => {
           if (language !== lang) {
-          changeLanguage(lang); // updates all components using language
-          setLanguageModalVisible(false);
-        }
+            changeLanguage(lang); // updates all components using language
+            setLanguageModalVisible(false);
+          }
         }}
       />
     </View>

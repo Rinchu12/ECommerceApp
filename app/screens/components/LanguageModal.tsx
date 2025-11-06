@@ -43,8 +43,8 @@ const LanguageModal: React.FC<Props> = ({ visible, onClose, onLanguageChange }) 
           <Text style={styles.title}>{LocalizedStrings.SELECT_LANGUAGE}</Text>
 
           {/* Language options */}
-          {renderOption('en','ENGLISH')}
-          {renderOption('ar', 'ARABIC')}
+          {renderOption('en','English')}
+          {renderOption('ar', 'Arabic')}
 
           {/* Close button */}
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>

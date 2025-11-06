@@ -4,6 +4,7 @@ import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { useLanguage } from "../src/context/LanguageContext";
 import { LocalizedStrings } from "../screens/localization/LocalizedStrings";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TabLayout() {
 
@@ -29,7 +30,7 @@ export default function TabLayout() {
         options={{
           title: LocalizedStrings.CART,
           tabBarIcon: ({ color }) => (
-            <IconSymbol name="house.fill" size={28} color={color} />
+            <Ionicons name="cart-outline" size={28} color={color} />
           ),
         }}
       />
