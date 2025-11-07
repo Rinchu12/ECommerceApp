@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { LocalizedStrings } from "../screens/localization/LocalizedStrings";
 import { Product, useCart } from "../src/context/CartContext";
 import { useLanguage } from "../src/context/LanguageContext";
+import { LocalizedStrings } from "../src/localization/LocalizedStrings";
 
 export default function CartScreen() {
   const { cart, removeFromCart } = useCart(); // Cart context

@@ -1,10 +1,10 @@
-import { Tabs } from "expo-router";
-import React from "react";
 import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
-import { useLanguage } from "../src/context/LanguageContext";
-import { LocalizedStrings } from "../screens/localization/LocalizedStrings";
 import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import React from "react";
+import { useLanguage } from "../src/context/LanguageContext";
+import { LocalizedStrings } from "../src/localization/LocalizedStrings";
 
 export default function TabLayout() {
   const { language } = useLanguage(); // triggers re-render on language change

@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { LocalizedStrings } from "../localization/LocalizedStrings";
 import { Product } from "@/app/src/context/CartContext";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { LocalizedStrings } from "../localization/LocalizedStrings";
 
 interface ProductCardProps {
   product: Product;

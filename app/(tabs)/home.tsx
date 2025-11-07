@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
-import Header from "../screens/components/Header";
-import LanguageModal from "../screens/components/LanguageModal";
-import ProductCard from "../screens/components/ProductCard";
-import { LocalizedStrings } from "../screens/localization/LocalizedStrings";
+import Header from "../src/components/Header";
+import LanguageModal from "../src/components/LanguageModal";
+import ProductCard from "../src/components/ProductCard";
 import { useCart } from "../src/context/CartContext";
 import { useLanguage } from "../src/context/LanguageContext";
+import { LocalizedStrings } from "../src/localization/LocalizedStrings";
 
 export default function HomeScreen() {
   const { cart, addToCart } = useCart(); // Cart context

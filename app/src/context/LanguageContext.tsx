@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Localization from 'expo-localization';
-import i18n from '../../screens/localization/i18n';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import i18n from '../localization/i18n';
 
 type LanguageContextType = {
   language: string;

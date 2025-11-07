@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useLanguage } from '../context/LanguageContext';
 import { LocalizedStrings } from '../localization/LocalizedStrings';
-import { useLanguage } from '../../src/context/LanguageContext';
 
 interface Props {
   visible: boolean;
