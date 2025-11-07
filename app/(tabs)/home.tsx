@@ -1,11 +1,11 @@
-import React, { useCallback, useState, useMemo, useEffect } from "react";
-import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
 import Header from "../screens/components/Header";
-import ProductCard from "../screens/components/ProductCard";
 import LanguageModal from "../screens/components/LanguageModal";
+import ProductCard from "../screens/components/ProductCard";
+import { LocalizedStrings } from "../screens/localization/LocalizedStrings";
 import { useCart } from "../src/context/CartContext";
 import { useLanguage } from "../src/context/LanguageContext";
-import { LocalizedStrings } from "../screens/localization/LocalizedStrings";
 
 export default function HomeScreen() {
   const { cart, addToCart } = useCart(); // Cart context
@@ -17,10 +17,10 @@ export default function HomeScreen() {
     return Array.from({ length: 20 }).map((_, i) => ({
       id: i.toString(),
       name: `${LocalizedStrings.PRODUCT} ${i + 1}`,
-      price: (10 + i).toFixed(2),
+      price: `${(10 + i).toFixed(2)}`,
+      productIndex: i + 1, // Store index for dynamic translation
     }));
   }, [language]); // dependency on language
-
 
   // Update products when language changes
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function HomeScreen() {
       ]);
       setLoading(false);
     }, 1000); // 1-second delay
-  }, [loading]);
+  }, [loading, BASE_PRODUCTS]);
 
   // Footer component to show loading indicator
   const renderFooter = () => {

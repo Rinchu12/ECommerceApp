@@ -1,13 +1,7 @@
-import React, { useMemo } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { LocalizedStrings } from '../localization/LocalizedStrings';
-import { useLanguage } from '../../src/context/LanguageContext';
-
-interface Product {
-  id: string;
-  name: string;
-  price: string;
-}
+import React, { useMemo } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { LocalizedStrings } from "../localization/LocalizedStrings";
+import { Product } from "@/app/src/context/CartContext";
 
 interface ProductCardProps {
   product: Product;
@@ -15,10 +9,12 @@ interface ProductCardProps {
   onAddToCart: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, isAdded, onAddToCart }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  isAdded,
+  onAddToCart,
+}) => {
   // Get current language from context
-  const { language } = useLanguage();
-
   return (
     <View style={styles.card}>
       {/* Product Name */}
@@ -47,13 +43,13 @@ export default ProductCard;
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 10,
     margin: 8,
     padding: 10,
-    alignItems: 'center',
+    alignItems: "center",
     // Shadow for iOS
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
@@ -62,27 +58,27 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 5,
-    textAlign: 'center',
+    textAlign: "center",
   },
   price: {
     fontSize: 13,
-    color: '#666',
+    color: "#666",
     marginBottom: 10,
   },
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: "#007AFF",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 6,
   },
   buttonAdded: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: "#4CAF50",
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 13,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

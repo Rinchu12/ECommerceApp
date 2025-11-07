@@ -1,11 +1,18 @@
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 // Product interface
 export interface Product {
   id: string;
   name: string;
   price: string;
+  productIndex?: number; // For dynamic translation
 }
 
 // Context type definition
@@ -17,9 +24,11 @@ interface CartContextType {
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
-const CART_STORAGE_KEY = 'APP_CART_DATA';
+const CART_STORAGE_KEY = "APP_CART_DATA";
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [cart, setCart] = useState<Product[]>([]);
 
   // Load cart from AsyncStorage on mount
@@ -29,7 +38,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const data = await AsyncStorage.getItem(CART_STORAGE_KEY);
         if (data) setCart(JSON.parse(data));
       } catch (error) {
-        console.error('Failed to load cart from storage:', error);
+        console.error("Failed to load cart from storage:", error);
       }
     };
     loadCart();
@@ -41,7 +50,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       try {
         await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
       } catch (error) {
-        console.error('Failed to save cart to storage:', error);
+        console.error("Failed to save cart to storage:", error);
       }
     };
     saveCart();
@@ -64,7 +73,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const clearCart = useCallback(() => setCart([]), []);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );
@@ -73,6 +84,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 // Custom hook to use the CartContext
 export const useCart = (): CartContextType => {
   const context = useContext(CartContext);
-  if (!context) throw new Error('useCart must be used within a CartProvider');
+  if (!context) throw new Error("useCart must be used within a CartProvider");
   return context;
 };
